@@ -118,7 +118,8 @@ class _QuizPageState extends State<QuizPage> {
           DialogButton(
             child: Text(
               "OK",
-              style: TextStyle(color: Colors.white, fontSize: 20),
+              style: TextStyle(
+                  color: Color.fromRGBO(66, 165, 245, 1.0), fontSize: 20),
             ),
             onPressed: () => Navigator.pop(context),
             width: 120,
