@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutterdddarchitecture/domain/auth/value_objects.dart';
+import 'package:flutterdddarchitecture/domain/core/errors.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'failures.dart';
@@ -11,6 +12,13 @@ abstract class ValueObject<T> {
 
   const ValueObject();
   Either<ValueFailure<T>, T> get value;
+
+  /// Throws [UnexpectedValueError]
+  T getOrCrash() {
+    return value.fold((fail) => throw UnexpectedValueError(fail), (r) => r)
+  }
+
+  bool isValid() => value.isRight();
 
   @override
   bool operator ==(Object other) =>
