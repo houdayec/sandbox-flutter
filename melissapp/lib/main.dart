@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:melissapp/birthdate_calculator/bloc/birthdate_bloc.dart';
+import 'package:melissapp/infrastructure/repositories/nsc_repository.dart';
+import 'package:melissapp/nsc_selector/bloc/nsc_selector_bloc.dart';
 import 'package:melissapp/pages/birthdate_widget.dart';
+import 'package:melissapp/pages/nfs_selector_widget.dart';
 
 import 'infrastructure/repositories/birthdate_repository.dart';
 
@@ -45,12 +48,19 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Scaffold(
       appBar: AppBar(
-
         title: Text(widget.title),
       ),
-      body: BlocProvider(
-        create: (context) => BirthdateBloc(FakeBirthdateRepository()),
-        child: BirthdateSelector(),
+      body: Column(
+        children: <Widget>[
+          BlocProvider(
+            create: (context) => BirthdateBloc(FakeBirthdateRepository()),
+            child: BirthdateSelector(),
+          ),
+          BlocProvider(
+            create: (context) => NscSelectorBloc(FakeNscRepository()),
+            child: NscSelector(),
+          ),
+        ],
       ),
     );
   }

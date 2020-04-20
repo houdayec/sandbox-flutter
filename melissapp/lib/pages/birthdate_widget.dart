@@ -45,7 +45,7 @@ class BirthdateSelector extends StatelessWidget {
   }
 }
 const String MIN_DATETIME = '1920-05-12';
-const String MAX_DATETIME = '2000-11-25';
+const String MAX_DATETIME = '1965-11-25';
 const String INIT_DATETIME = '1940-04-17';
 
 class DatePickerWidget extends StatefulWidget {
