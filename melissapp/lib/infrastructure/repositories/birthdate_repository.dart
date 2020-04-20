@@ -6,7 +6,7 @@ class FakeBirthdateRepository implements BirthdateRepository {
 
   @override
   Future<String> computeAge(DateTime birthdate) {
-    return Future.delayed(Duration(seconds: 1), () {
+    return Future.delayed(Duration(milliseconds: 50), () {
       final currentTime = DateTime.now();
       var difference = currentTime.difference(birthdate).inDays;
       int numberOfYears = (difference / 365).floor();

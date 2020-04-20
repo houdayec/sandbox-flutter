@@ -14,12 +14,19 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      title: 'MelissApp',
       theme: ThemeData(
-
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.deepPurple,
+        accentColor: Colors.red,
+        fontFamily: "Merienda",
+        textTheme: TextTheme(
+          headline: TextStyle(fontSize: 72.0, fontFamily: 'Merienda'),
+          title: TextStyle(fontSize: 36.0, fontFamily: 'Merienda', color: Colors.deepPurple.shade300, fontWeight: FontWeight.bold),
+          body1: TextStyle(fontSize: 20.0, fontFamily: 'Merienda', color: Colors.deepPurple.shade300),
+        ),
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'MelissApp'),
     );
   }
 }
@@ -47,20 +54,34 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
 
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Column(
-        children: <Widget>[
-          BlocProvider(
-            create: (context) => BirthdateBloc(FakeBirthdateRepository()),
-            child: BirthdateSelector(),
-          ),
-          BlocProvider(
-            create: (context) => NscSelectorBloc(FakeNscRepository()),
-            child: NscSelector(),
-          ),
-        ],
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: <Widget>[
+            Expanded(
+                child: BlocProvider(                
+                  create: (context) => BirthdateBloc(FakeBirthdateRepository()),
+                  child: BirthdateSelector(),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.symmetric(vertical: 16),
+              child: Divider(
+                  color: Colors.deepPurple.shade300,
+                ),
+            ),
+            Expanded(
+                child: BlocProvider(
+                  create: (context) => NscSelectorBloc(FakeNscRepository()),
+                  child: NscSelector(),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_cupertino_date_picker/flutter_cupertino_date_picker.dart';
@@ -10,7 +11,7 @@ class BirthdateSelector extends StatelessWidget {
     return Column(
       children: <Widget>[
         FlatButton(
-          child: Text(age, style: TextStyle(fontSize: 40),), 
+          child: Text(age, style: Theme.of(context).textTheme.body1,), 
         onPressed: () {
           DatePickerWidget();
         },)
@@ -23,18 +24,20 @@ class BirthdateSelector extends StatelessWidget {
     return Container(
        child: Container(
          child: Column(
+           mainAxisAlignment: MainAxisAlignment.center,
            children: <Widget>[
-             Text("Date de naissance",
-             style: TextStyle(fontSize: 40),),
+             AutoSizeText("Date de naissance",
+             maxLines: 1,
+             style: Theme.of(context).textTheme.title,),
              DatePickerWidget(),
              BlocBuilder<BirthdateBloc, BirthdateState>(
                builder: (BuildContext context, BirthdateState state) {
                   if(state is BirthdateInitial){
-                    return Text("No date selected");
+                    return Text("Pas de date sélectionnée");
                   }else if(state is AgeComputed){
                     return buildColumnWithAge(context, state.computedAge);
                   } else {
-                    return Text("No date selected");
+                    return Text("Pas de date sélectionnée", style: Theme.of(context).textTheme.title,);
                   }
                },
              ),
@@ -80,9 +83,15 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
     return Container(
        child: Column(
          children: <Widget>[
-            FlatButton(child: Text("Choisir une date de naissance"), onPressed: () {
-              _showDatePicker(context);
-            },),  
+            Container(
+              margin: EdgeInsets.all(16),
+              child: FlatButton(
+                color: Colors.deepPurple,
+                child: Text("Choisir une date de naissance", style: TextStyle(color: Colors.white)), 
+              onPressed: () {
+                _showDatePicker(context);
+              },),
+            ),  
           ],
        ),
     );

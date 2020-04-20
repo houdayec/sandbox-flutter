@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,18 +29,23 @@ class _NscSelectorState extends State<NscSelector> {
     context = context;
     return Container(
       child: Column(
+           mainAxisAlignment: MainAxisAlignment.center,
            children: <Widget>[
-             Text("Années d'études",
-             style: TextStyle(fontSize: 40),),
-             StudiesPicker(),
+             AutoSizeText(
+               "Années d'études",
+               style: Theme.of(context).textTheme.title,
+             ),
+             Container(
+               margin: EdgeInsets.all(16),
+               child: StudiesPicker(),),
              BlocBuilder<NscSelectorBloc, NscSelectorState>(
               builder: (BuildContext context, NscSelectorState state) {
                 if(state is NscSelectorInitial){
-                  return Text("Pas de niveau d'études sélectionné");
+                  return AutoSizeText("Pas de niveau d'études sélectionné", maxLines: 1,);
                 } else if(state is NumberOfYearsComputed){
                   return buildColumnWithData(context, state.numberOfYearsFormatted);
                 } else {
-                  return Text("No date selected");
+                  return AutoSizeText("Pas de niveau d'études sélectionné", maxLines: 1,);
                 }
               },
             )
@@ -86,7 +92,7 @@ class _StudiesPickerState extends State<StudiesPicker> {
   @override
   void initState() {
     
-    StudiesPicker.listValues.forEach((key, value) => items.add(DropdownMenuItem(child: Text(value), value: value)));
+    StudiesPicker.listValues.forEach((key, value) => items.add(DropdownMenuItem(child: Text(value, style: TextStyle(color: Colors.black),), value: value)));
     super.initState();
     
   }
@@ -99,7 +105,7 @@ class _StudiesPickerState extends State<StudiesPicker> {
            child: SearchableDropdown.single(
             items: items,
             value: selectedValue,
-            hint: "Sélectionner",
+            hint: Text("Sélectionner", style: TextStyle(color: Colors.deepPurple.shade300),),
             searchHint: "Sélectionner",
             onChanged: (value) {
               setState(() {
