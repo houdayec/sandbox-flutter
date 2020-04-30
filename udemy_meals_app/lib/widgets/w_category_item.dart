@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:udemy_meals_app/pages/pg_categories_details.dart';
 
 class CategoryItem extends StatelessWidget {
   final String id;
@@ -8,7 +9,7 @@ class CategoryItem extends StatelessWidget {
   CategoryItem(this.id, this.title, this.color);
 
   void selectCategory(BuildContext ctx) {
-    Navigator.of(ctx).pushNamed("/category-details", arguments: {
+    Navigator.of(ctx).pushNamed(CategoryDetailsPage.routeName, arguments: {
       "id": id,
       "title": title,
     });
