@@ -14,7 +14,7 @@ description: A new Flutter project.
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.2.2 <3.0.0"
 
 dependencies:
   flutter:
@@ -53,8 +53,8 @@ flutter:
     - family: Lato
       fonts:
         - asset: assets/fonts/Lato-Regular.ttf
-        - asset: fonts/Lato-Bold.ttf
+        - asset: assets/fonts/Lato-Bold.ttf
           weight: 700
     - family: Anton
       fonts:
-        - asset: fonts/Anton-Regular.ttf
+        - asset: assets/fonts/Anton-Regular.ttf
