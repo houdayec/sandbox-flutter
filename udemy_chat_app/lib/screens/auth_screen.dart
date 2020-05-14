@@ -53,9 +53,9 @@ class _AuthScreenState extends State<AuthScreen> {
           "image_url": url,
         });
       }
-      setState(() {
-        _isLoading = true;
-      });
+      // setState(() {
+      //   _isLoading = true;
+      // });
     } on PlatformException catch (err) {
       var message = "An error occured, please check your credentials.";
       if (err.message != null) {
